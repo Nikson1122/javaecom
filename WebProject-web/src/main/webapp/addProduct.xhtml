@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Add Product</title>
+        <h:outputStylesheet value="style.css"/>
+    </h:head>
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+
+        <p:growl id="growl" showDetail="true"   class="panelColor" />
+        <h:form id="productForm" enctype="multipart/form-data">
+
+            <h2>Add Product</h2>
+            <p:panelGrid columns="2">
+
+                <p:outputLabel for="name" value="Product Name:" >
+                    <p:inputText id="name" value="#{productMBean.name}" required="true" requiredMessage="Product Name is required!" style="margin-left: 10px;" />
+                </p:outputLabel>
+                
+                <p:outputLabel for="description" value="Description:" >
+                    <p:inputTextarea id="description" value="#{productMBean.description}" required="true" rows="5" requiredMessage="Description is required!" style="margin-left: 10px;" />
+                </p:outputLabel>
+              
+                <label>Product Photo:</label>
+                <p:fileUpload listener="#{productMBean.handleFileUploadLogo}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                              multiple="false" sizeLimit="100000000" mode="advanced" dragDropSupport="false" update="refreshMe" />
+
+                <p:graphicImage cache="false" id="refreshMe" value="#{productMBean.imageLogo}" width="150px"
+                                style="margin-left: 20px"/>
+
+
+                <p:outputLabel for="price" value="Price: " >
+                    <p:inputNumber id="price" value="#{productMBean.price}" required="true" requiredMessage="Price is required!" />
+                </p:outputLabel>
+
+                <p:outputLabel for="quantity" value="Quantity: " >
+                    <p:inputText id="quantity" value="#{productMBean.quantity}" required="true" requiredMessage="Quantity is required!" />
+                </p:outputLabel>
+
+                <p:outputLabel for="tag" value="Tag: " >
+                    <p:inputText id="tag" value="#{productMBean.tag}"  rendered="true" requiredMessage="Tag is required!"/>
+                </p:outputLabel>
+
+                <p:outputLabel  value="Category: " >
+                    <p:selectOneMenu id="categoryId" value="#{productMBean.categoryId}" required="true" requiredMessage="Select one category!">
+                        <f:selectItem itemLabel="Select one category" itemValue="" />
+                        <f:selectItems value="#{productMBean.categoryList}" var="list" itemLabel="#{list.name}" itemValue="#{list.id}"/>
+                    </p:selectOneMenu>
+                </p:outputLabel>
+
+            </p:panelGrid>
+
+            <p:commandButton value="Save" action="#{productMBean.saveProduct()}" id="save"  update="productForm,growl" styleClass="form-button"  />
+            <p:commandButton value="Cancel" action="#{productMBean.cancelForm()}" id="cancel" update="productForm" styleClass="form-button" style="margin-left: 10px;" immediate="true" />
+
+        </h:form>
+        <p:graphicImage value="#{productMBean.imageUrl}" width="75px" height="75px" rendered="#{not empty productMBean.imageUrl}"/>
+        </ui:define>
+    </ui:composition>
+    
+</html>

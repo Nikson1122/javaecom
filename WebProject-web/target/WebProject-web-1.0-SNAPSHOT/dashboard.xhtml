@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Dashboard</title>
+        <h:outputStylesheet value="style.css"/>
+    </h:head>
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <p:growl id="growl" showDetail="true" /> 
+            <f:metadata> 
+                <f:event type="preRenderView" listener="#{dashboardManagedBean.preRenderDashboard()}" /> 
+            </f:metadata> 
+
+            <div id="all_items">
+                <ui:repeat value="#{dashboardManagedBean.productList}" var="var" id="productList" >
+                    <div class="product_container" style="#{dashboardManagedBean.containerHeight}">
+                        
+                        <div class="product_image_container">
+                            <div class="product_image" style="background-image: url('#{dashboardManagedBean.getImageURLFromDB(var.image)}')">
+                                
+                            </div>
+                            <div class="product_price"> Rs:  #{var.price}</div>
+                        </div>
+                        <div class="product_name">#{var.name}</div>
+                        
+                        <div class="product_options" style="#{dashboardManagedBean.notVisibleToAdmin()}">
+                            <h:form>
+<!--                                <p:spacer width="22px"/>
+                                <p:commandButton value="Details"/>       -->
+                                <p:spacer width="100px"/>
+                                <p:inputText 
+                                    value="#{dashboardManagedBean.quantity}" id="price_#{var.id}" placeholder="Enter Quantity" size="10" required="true" requiredMessage="Quantity is required"/>
+                                <p:spacer width="5px"/>
+                                <p:commandButton value="Buy" style="background-color: rgb(131,48,194); " action="#{dashboardManagedBean.buyItem(var)}" process="@form" ajax="true" update="growl" />
+                            </h:form>
+                        </div>
+                    
+                        <div >
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

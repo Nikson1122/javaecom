@@ -1,0 +1,12 @@
+com\milan\managedBean\ProductMBean.class
+com\milan\managedBean\JSONobject.class
+com\milan\managedBean\DashboardManagedBean.class
+com\milan\csv\EmailValidator.class
+com\milan\managedBean\ApplicationConfig.class
+com\milan\managedBean\LoginRegisterManagedBean.class
+com\milan\managedBean\GenericResource.class
+com\milan\managedBean\NavManagedBean.class
+com\milan\managedBean\ApiBean.class
+com\milan\managedBean\HttpSErvletRequest.class
+com\milan\managedBean\NayaManagedBean.class
+com\milan\managedBean\UserManagedBean.class

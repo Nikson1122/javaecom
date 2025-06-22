@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Order</title>
+        <h:outputStylesheet value="style.css"/>
+    </h:head>
+    <f:metadata>
+           <f:event type="preRenderView" listener="#{nayaManagedBean.populateData()}"/>
+
+        </f:metadata>
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+    <h:body>
+    
+        
+        <h:form>
+            
+        </h:form>
+         <h1>Submitted Data:</h1>
+    <p>Name: #{flash.name}</p>
+    <p>Address: #{flash.address}</p>
+    <p>Contact: #{flash.contact}</p>
+        <h:form>
+              </h:form>
+         <h1>Searched Data:</h1>
+         <p>Name: #{nayaManagedBean.name}</p>
+         <p>Address: #{nayaManagedBean.address}</p>
+         <p>Contact: #{nayaManagedBean.contact}</p>
+        <h:form>
+     <p:commandButton value="See All Data" action="#{nayaManagedBean.fetch()}" type="submit" ajax="false"/><br/>
+        
+        </h:form>
+    
+ <h:form id="searchForm">
+     <p:inputText id="searchText" value="#{nayaManagedBean.find}" placeholder="Enter name to search" />
+     <p:commandButton value="See Data" action="#{nayaManagedBean.findData()}" type="search" ajax="false"/><br/>
+
+   
+</h:form>
+
+
+              <h:form id="contactsList">
+                  <p:dataTable value="#{nayaManagedBean.contactList}" var="tl" id="contactsListt" style="margin-top: 20px"
+                             rows="20" paginator="true" paginatorPosition="bottom" rowsPerPageTemplate="10,20,50,100">
+                    <p:column headerText="User ID">
+                      
+                        <h:outputLabel value="#{tl.id}"/>
+                       
+                    </p:column>
+
+                    <p:column headerText="Name">
+                        <h:outputLabel value="#{tl.name}"/>
+                    </p:column>
+                      
+                       <p:column headerText="Address">
+                        <h:outputLabel value="#{tl.address}"/>
+                    </p:column>
+
+                    <p:column headerText="Contact">
+                        <h:outputLabel value="#{tl.contactNumber}"/>
+                    </p:column>
+                      
+                      <p:column headerText="Edit">
+                          <p:commandButton value="Edit"  action="#{nayaManagedBean.edit(tl)}" icon="pi pi-pencil" />
+</p:column>
+                      
+                           <p:column headerText="Delete">
+                               <p:commandButton value="Delete" action="#{nayaManagedBean.delete(tl.id)}" icon="pi pi-pencil" style="background-color: red; border-color: red; color: white;"/>
+</p:column>
+              
+                      
+                     
+                      
+                   
+                </p:dataTable>
+            </h:form>
+    </h:body>
+            
+     </ui:define>
+    </ui:composition>
+
+</html>

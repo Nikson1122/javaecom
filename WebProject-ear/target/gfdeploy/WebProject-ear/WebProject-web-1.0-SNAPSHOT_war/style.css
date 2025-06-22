@@ -1,0 +1,217 @@
+/*Global Values*/
+.vspace{
+    height: 20px;
+}
+.hspace{
+    width: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+.form-container .center {
+    text-align: center;
+}
+
+.form-container .button {
+    margin-top: 10px;
+}
+
+.form-container .button a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-container .button a:hover {
+    text-decoration: underline;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf') format('ttf'),
+        url('fonts/Poppins-Bold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: "Poppins", sans-serif;
+}
+.spacer50{
+    margin-right: 10px;
+    display: inline;
+}
+.nav-link {
+    font-family: "Poppins", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(131,48,194);
+}
+.nav-cmd-link {
+    font-family: "Poppins", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(131,48,194);
+}
+.flexCenter {
+    display: flex;
+    justify-content: space-around;
+}
+.background{
+    font-family: "Poppins", sans-serif;
+    background: rgb(246,248,250);
+
+}
+#navbackground {
+    font-family: "Poppins", sans-serif;
+    height: 75px;
+    background: rgb(246,248,250);
+    margin-top: 25px;
+    width: 890px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items:  center;
+} 
+.custom-icon {
+    color: rgb(131,48,194);
+}
+
+.delete-icon {
+    color: red;
+}
+/*--------------Product---------------*/
+#all_items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    padding: 0 40px; 
+}
+
+.product_container {
+    background: rgb(246, 248, 250);
+    border-radius: 10px;
+    margin: 10px 0; 
+    height: 320px;
+    padding-left: 30px;
+    width: calc(33.33% - 40px); 
+    box-shadow: 1px 1px 1px 1px #888888;
+}
+
+.product_image_container{
+    height: 210px;
+    width: 320px;
+    margin-left:15px;
+}
+.product_image{
+    height:200px;
+    width: 300px;
+    margin: auto;
+    display: block;
+    background-size: cover;
+    background-position: center;
+
+
+
+}
+.product_price{
+    background: lightgreen;
+    height:30px;
+    margin-top:-29px;
+    border-radius:5px;
+    text-align: center;
+    margin-left:10px;
+    font-size:25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:10px;
+    padding-bottom: 35px;
+    align-content: center;
+
+}
+.product_name{
+    height:40px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(131,48,194);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:10px;
+    align-content: center;
+}
+
+.details_btn{
+    width:110px;
+    height:40px;
+    border-radius:5px;
+    background: lightyellow;
+}
+.product_options{
+    display: flex;
+    height: 40px;
+    margin-top:2px;
+    margin-bottom: 2px;
+
+}
+.cart_btn{
+    background-color: white;
+    color: black;
+
+}
+.quantity{
+    width:110px;
+    height:35px;
+    border-radius:5px;
+}
+.user-dialog {
+    left: 70% !important;
+    top: 10% !important;
+    transform: translate(-50%, -50%);
+}
+

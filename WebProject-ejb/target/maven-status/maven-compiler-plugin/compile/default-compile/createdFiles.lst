@@ -1,0 +1,14 @@
+com\milan\sessionBeans\ArrayList.class
+com\milan\entities\Orders.class
+com\milan\sessionBeans\ContactSessionBean.class
+com\milan\entities\User.class
+com\milan\entities\Product.class
+com\milan\entities\Category.class
+com\milan\sessionBeans\ProductSessionBean.class
+com\milan\entities\SQLEXCEPTION.class
+com\milan\sessionBeans\placeOrderSessionBean.class
+com\milan\sessionBeans\placeOrderSessionBeanLocal.class
+com\milan\sessionBeans\ContactLocal.class
+com\milan\entities\Contact.class
+com\milan\sessionBeans\LoginRegisterSessionBean.class
+com\milan\sessionBeans\UserSessionBean.class

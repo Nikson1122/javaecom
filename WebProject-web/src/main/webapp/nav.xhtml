@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <div class="flexCenter">
+            <div id="navbackground">
+                <h:outputLink value="dashboard.xhtml?faces-redirect=true" styleClass="nav-link">
+                    Products
+                </h:outputLink>
+                <h:outputLink value="manageProduct.xhtml?faces-redirect=true" styleClass="nav-link" rendered="#{navManagedBean.isAdmin()}">
+                    Manage
+                </h:outputLink>
+                <h:outputLink value="orderDetail.xhtml" styleClass="nav-link">
+                    Orders
+                </h:outputLink>
+                <h:outputLink value="addProduct.xhtml?faces-redirect=true" styleClass="nav-link" rendered="#{navManagedBean.isAdmin()}">
+                    Add Products
+                </h:outputLink>
+                <h:outputLink value="addCategory.xhtml?faces-redirect=true" styleClass="nav-link" rendered="#{navManagedBean.isAdmin()}">
+                    Add Category
+                </h:outputLink>
+                
+                  <h:outputLink value="new.xhtml" styleClass="nav-link">
+                    New Nav
+                </h:outputLink>
+                
+                   <h:outputLink value="naya.xhtml" styleClass="nav-link">
+                    Naya
+                </h:outputLink>
+                <div>
+                    <span class="pi pi-user custom-icon" style="font-size: 22px" ></span>
+                    <div class="spacer50"/>
+                    <p:commandLink value="#{navManagedBean.user}" styleClass="nav-link" style=
+                                   "
+                                   font-family: 'Poppins', sans-serif;
+                                   font-size: 22px;
+                                   font-weight: 600;
+                                   text-decoration: none;
+                                   color: rgb(131,48,194);" oncomplete="PF('profileDialog').show()">
+
+                    </p:commandLink>
+                </div>
+
+
+            </div>  
+        </div>
+        <p:dialog visible="false" widgetVar="profileDialog" styleClass="user-dialog" modal="true"  >
+            <h:form>
+                <div style="height: 30px">
+                    <h:commandLink value="Log Out" style=
+                                   "
+                                   font-family: 'Poppins', sans-serif;
+                                   font-size: 18px;
+                                   font-weight: 400;
+                                   text-decoration: none;
+                                   " action="#{navManagedBean.logOut()}"
+                                   >
+                    </h:commandLink>
+                </div>
+            </h:form>
+        </p:dialog>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Add Product</title>
+        <h:outputStylesheet value="style.css"/>
+         <style type="text/css">
+            .form-container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .field {
+                margin-bottom: 15px;
+            }
+            .block {
+                display: block;
+                width: 100%;
+            }
+            .name {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+        </style>
+        <!-- PrimeFaces automatically adds required CSS/JS, but you can manually include if needed -->
+        <f:facet name="first">
+            <h:outputScript library="primefaces" name="jquery/jquery.js" />
+            <h:outputScript library="primefaces" name="primefaces.js" />
+        </f:facet>
+    </h:head>
+    
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <div class="form-container">
+                <h:form id="regForm">
+                    <h2>Registration Form</h2>
+
+                    
+                       <span class="ui-float-label">
+       <p:inputText id="name" value="#{ContactSessionBean.name}"/>
+       <p:outputLabel for="@previous" value="Username"/>
+   </span>
+
+                    
+                    <div class="field">
+                        <p:outputLabel for="address" value="Address" styleClass="name"/>
+                        <p:inputText id="address" value="#{ContactSessionBean.address}" styleClass="block"/>
+                        <small class="block">Enter your Address.</small>
+                    </div>
+                    
+                    <div class="field">
+                        <p:outputLabel for="contact" value="Contact" styleClass="name"/>
+                        <p:inputText id="contact" value="#{ContactSessionBean.contactNumber}" styleClass="block"/>
+                        <small class="block">Enter your Contact Number.</small>
+                    </div>
+                    
+                    <p:commandButton value="Submit" action="#{ContactSessionBean.submit}" 
+                                   styleClass="block" update="@form"/>
+
+                </h:form>
+            </div>
+            
+        </ui:define>
+    </ui:composition>
+</html>

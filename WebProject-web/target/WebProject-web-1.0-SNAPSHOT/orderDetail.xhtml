@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Order</title>
+        <h:outputStylesheet value="style.css"/>
+    </h:head>
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <p:dataTable value="#{productMBean.orderList}" var="tl" rowIndexVar="ind" style="margin-top: 20px" rendered="#{navManagedBean.isAdmin()}"
+                             rows="20" paginator="true" paginatorPosition="bottom" rowsPerPageTemplate="10,20,50,100">
+                    <p:column headerText="S.N">
+                        <h:outputLabel value="#{ind+1}"/>
+                    </p:column>
+
+                    <p:column headerText="Product Name">
+                        <h:outputLabel value="#{tl.productId.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Price">
+                        <h:outputLabel value="#{tl.price}"/>
+                    </p:column>
+                   <p:column headerText="Quantity">
+                       <h:outputLabel value="#{tl.quantity}"/>
+                    </p:column>
+                 <p:column headerText="Order Date">
+                     <h:outputLabel value="#{tl.orderDate}"/>
+                    </p:column>
+                 <p:column headerText="Customer Name">
+                     <h:outputLabel value="#{tl.userId.name}"/>
+                    </p:column>
+                   <p:column headerText="Customer Number">
+                       <h:outputLabel value="#{tl.userId.contactNumber}"/>
+                    </p:column>
+                   <p:column headerText="Customer Address">
+                       <h:outputLabel value="#{tl.userId.address}"/>
+                    </p:column>
+                </p:dataTable>
+             <p:dataTable value="#{productMBean.orderListForCustomer}" var="tl" rowIndexVar="ind" style="margin-top: 20px"
+                             rows="20" paginator="true" paginatorPosition="bottom" rendered="#{!navManagedBean.isAdmin()}"
+                             rowsPerPageTemplate="10,20,50,100">
+                    <p:column headerText="S.N">
+                        <h:outputLabel value="#{ind+1}"/>
+                    </p:column>
+
+                    <p:column headerText="Product Name">
+                        <h:outputLabel value="#{tl.productId.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Price">
+                        <h:outputLabel value="#{tl.price}"/>
+                    </p:column>
+                   <p:column headerText="Quantity">
+                       <h:outputLabel value="#{tl.quantity}"/>
+                    </p:column>
+                 <p:column headerText="Order Date">
+                     <h:outputLabel value="#{tl.orderDate}"/>
+                    </p:column>
+                </p:dataTable>
+        </ui:define>
+    </ui:composition>
+</html>
