@@ -20,10 +20,7 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @Local
-public class ContactSessionBean  {
-    
-    
-
+public class ContactSessionBean {
 
     @PersistenceContext(unitName = "web_pu")
     // Replace with your PU name from persistence.xml
@@ -45,20 +42,20 @@ public class ContactSessionBean  {
         contact.setName(name);
         contact.setContactNumber(contactNumber);
         contact.setAddress(address);
-        
+
         em.persist(contact);
-       
+
     }
-    
-    public List<Contact> fetchAllContact(){
+
+    public List<Contact> fetchAllContact() {
         String sql = "select * from contact";
-         Query query = em.createNativeQuery(sql, Contact.class);
-         return query.getResultList();
+        Query query = em.createNativeQuery(sql, Contact.class);
+        return query.getResultList();
     }
-    
-    public Contact updateContact(Long id, String newName, String newAddress, String newcontactNumber ){
-        Contact contact = em.find(Contact.class,id);
-        if(contact != null){
+
+    public Contact updateContact(Long id, String newName, String newAddress, String newcontactNumber) {
+        Contact contact = em.find(Contact.class, id);
+        if (contact != null) {
             contact.setName(newName);
             contact.setAddress(newAddress);
             contact.setContactNumber(newcontactNumber);
@@ -66,34 +63,37 @@ public class ContactSessionBean  {
         }
         return contact;
     }
-    
-    public  void  deleteContact(Long id){
+
+    public void deleteContact(Long id) {
         Contact contact = em.find(Contact.class, id);
-        if(contact != null){
+        if (contact != null) {
             em.remove(contact);
         }
-        
+
+    }
+
+    public Contact findContact(Long id) {
+        return em.find(Contact.class, id);
+    }
+
+    public List<Contact> getByname(String name) {
+
+        String sql = "SELECT * FROM `contact` WHERE name LIKE '" + name + "%'";
+        Query query = em.createNativeQuery(sql, Contact.class);
+        return query.getResultList();
     }
     
-   public Contact findContact(Long id){
-       return em.find(Contact.class, id);
-   }
-    
-   
+    public List<Contact> getByaddress( String address){
+        String sql = "SELECT * FROM `contact` WHERE  address LIKE'" +address + "%'";
+        Query query = em.createNativeQuery(sql, Contact.class);
+        return query.getResultList();
+    }
 
-  
 }
-
-
-
-
-
 
 //public String submit() {
 ////    saveContact(contact);
 ////    contact = new Contact();
 //    return null;
 //}
-  
-
 
