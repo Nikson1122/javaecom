@@ -93,6 +93,7 @@ ProductSessionBean productSessionBean;
         if(Integer.valueOf(product.getQuantity())<Integer.valueOf(this.quantity)){
           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sorry! Only "+product.getQuantity()+" items available!",null));
         }else{
+//            product.get
             placeOrderSessionBean.placeOrder(loginRegisterSessionBean.getUserId(), product, new Date(), quantity);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success","Order Placed!"));
         }
@@ -100,4 +101,4 @@ ProductSessionBean productSessionBean;
         
     }
   
-}
+}       

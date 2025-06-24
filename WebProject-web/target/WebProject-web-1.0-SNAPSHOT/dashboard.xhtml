@@ -37,7 +37,7 @@
                                 <p:inputText 
                                     value="#{dashboardManagedBean.quantity}" id="price_#{var.id}" placeholder="Enter Quantity" size="10" required="true" requiredMessage="Quantity is required"/>
                                 <p:spacer width="5px"/>
-                                <p:commandButton value="Buy" style="background-color: rgb(131,48,194); " action="#{dashboardManagedBean.buyItem(var)}" process="@form" ajax="true" update="growl" />
+                                <p:commandButton value="Buy" style="background-color: rgb(131,48,194); " action="#{esewaBean.pay(var)}" process="@form" ajax="true" update="growl" />
                             </h:form>
                         </div>
                     

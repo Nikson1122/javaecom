@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>eSewa Payment</title>
+</h:head>
+    
+    
+<h:body>
+
+    <!-- Debug outputs to verify values are set -->
+<!--    <h3>Debug info:</h3>
+    <p>Paid Amount: #{esewaBean.paidAmount}</p>
+    <p>Transaction UUID: #{esewaBean.transactionUUID}</p>
+    <p>Signature: #{esewaBean.signature}</p>-->
+
+
+
+
+    <form id="esewaForm" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+ <input type="hidden"  id="amount" name="amount" value="#{esewaBean.paidAmount}" />
+ <input type="hidden" id="tax_amount" name="tax_amount" value ="0" />
+ <input type="hidden" id="total_amount" name="total_amount" value="#{esewaBean.paidAmount}"/>
+ <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="#{esewaBean.transactionUUID}" />
+ <input type="hidden" id="product_code" name="product_code" value ="EPAYTEST" />
+ <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" />
+ <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0" />
+<!-- <input type="hidden" id="success_url" name="success_url" value="https://developer.esewa.com.np/success" />-->
+ <input type="hidden" id="success_url" name="success_url" value="http://localhost:8080/WebProject-web/sucess.xhtml" />
+ <input type="hidden" id="failure_url" name="failure_url" value="https://developer.esewa.com.np/failure" />
+ <input type="hidden" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" />
+ <input type="hidden" id="signature" name="signature" value="#{esewaBean.signature}" />     
+ <!--<input value="Submit" type="submit"/>-->   
+ 
+   
+ </form>
+ <script type="text/javascript">
+        // Auto-submit the form after page loads
+        window.onload = function() {
+            document.getElementById('esewaForm').submit();
+        }
+    </script>
+<!-- <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+ <input type="text" id="amount" name="amount" value="8000.0" />
+ <input type="text" id="tax_amount" name="tax_amount" value ="0.0" />
+ <input type="text" id="total_amount" name="total_amount" value="8000.0"/>
+ <input type="text" id="transaction_uuid" name="transaction_uuid" value="4231d39e-a896-4db2-abc5-a8c13f15c128" />
+ <input type="text" id="product_code" name="product_code" value ="EPAYTEST" />
+ <input type="text" id="product_service_charge" name="product_service_charge" value="0.0" />
+ <input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0.0" />
+ <input type="text" id="success_url" name="success_url" value="https://developer.esewa.com.np/success" />
+ <input type="text" id="failure_url" name="failure_url" value="https://developer.esewa.com.np/failure" />
+ <input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" />
+ <input type="text" id="signature" name="signature" value="fYEVOvC5TXnQJ9DssVLTWgQ0VLXGB5e5bu9swe9n5Cc=" />
+ <input value="Submit" type="submit"/>   
+ </form> -->
+
+</h:body>
+</html>

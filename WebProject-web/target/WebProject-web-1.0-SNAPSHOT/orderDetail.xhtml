@@ -1,4 +1,304 @@
+<!--<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Your Payment History</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-table th {
+            background-color: #6e8efb;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f5f7ff;
+        }
+        
+        .amount {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .transaction-id {
+            font-family: 'Courier New', monospace;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .support-link {
+            display: inline-block;
+            margin-top: 20px;
+            background: #6e8efb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .support-link:hover {
+            background: #5a7df4;
+            transform: translateY(-2px);
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header">
+            <h2>Your Payment History</h2>
+            <div class="subtitle">All your transactions in one place</div>
+        </div>
+        
+        <h:dataTable value="#{esewaBean.allPayments}" var="p" styleClass="data-table" headerClass="table-header">
+            <h:column>
+                <f:facet name="header">Product Name</f:facet>
+                <strong>#{p.productName}</strong>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Amount</f:facet>
+                <span class="amount">Rs. #{p.amount}</span>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Transaction ID</f:facet>
+                <span class="transaction-id">#{p.orderId}</span>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Payment Date</f:facet>
+                <h:outputText value="#{p.paymentDate}">
+                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+        
+        <div class="footer">
+            <p>Need help with any of these transactions?</p>
+            <a href="#" class="support-link">Contact Customer Support</a>
+            <p>© 2023 Your Company Name. All rights reserved.</p>
+        </div>
+    </div>
+</h:body>
+</html>-->
+
+
+
 <!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h:outputStylesheet>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background-color: #f8f9fa;
+                    color: #333;
+                    line-height: 1.6;
+                    padding: 0;
+                    margin: 0;
+                }
+                
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                
+                .header {
+                    background: linear-gradient(135deg, #6e8efb, #a777e3);
+                    color: white;
+                    padding: 30px 0;
+                    text-align: center;
+                    margin-bottom: 30px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                }
+                
+                h2 {
+                    margin: 0;
+                    font-size: 28px;
+                    font-weight: 600;
+                }
+                
+                .subtitle {
+                    font-size: 16px;
+                    opacity: 0.9;
+                    margin-top: 10px;
+                }
+                
+                .data-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    background: white;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+                
+                .data-table th {
+                    background-color: #6e8efb;
+                    color: white;
+                    padding: 15px;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                
+                .data-table td {
+                    padding: 12px 15px;
+                    border-bottom: 1px solid #eee;
+                }
+                
+                .data-table tr:last-child td {
+                    border-bottom: none;
+                }
+                
+                .data-table tr:hover {
+                    background-color: #f5f7ff;
+                }
+                
+                .amount {
+                    color: #28a745;
+                    font-weight: 600;
+                }
+                
+                .transaction-id {
+                    font-family: 'Courier New', monospace;
+                    color: #6c757d;
+                    font-size: 14px;
+                }
+                
+                .footer {
+                    text-align: center;
+                    margin-top: 40px;
+                    color: #6c757d;
+                    font-size: 14px;
+                }
+                
+                .support-link {
+                    display: inline-block;
+                    margin-top: 20px;
+                    background: #6e8efb;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                }
+                
+                .support-link:hover {
+                    background: #5a7df4;
+                    transform: translateY(-2px);
+                }
+            </h:outputStylesheet>
+
+            <div class="container">
+<!--                <div class="header">
+                    <h2>Your Payment History</h2>
+                    <div class="subtitle">All your transactions in one place</div>
+                </div>-->
+                
+                <h:dataTable value="#{esewaBean.allPayments}" var="p" styleClass="data-table" headerClass="table-header">
+                    <h:column>
+                        <f:facet name="header">Product Name</f:facet>
+                        <strong>#{p.productName}</strong>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        <span class="amount">Rs. #{p.amount}</span>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Transaction ID</f:facet>
+                        <span class="transaction-id">#{p.orderId}</span>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Payment Date</f:facet>
+                        <h:outputText value="#{p.paymentDate}">
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+                
+<!--                <div class="footer">
+                    <p>Need help with any of these transactions?</p>
+                    <a href="#" class="support-link">Contact Customer Support</a>
+                    <p>© 2023 Your Company Name. All rights reserved.</p>
+                </div>-->
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+<!--<!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -43,24 +343,24 @@
              <p:dataTable value="#{productMBean.orderListForCustomer}" var="tl" rowIndexVar="ind" style="margin-top: 20px"
                              rows="20" paginator="true" paginatorPosition="bottom" rendered="#{!navManagedBean.isAdmin()}"
                              rowsPerPageTemplate="10,20,50,100">
-                    <p:column headerText="S.N">
-                        <h:outputLabel value="#{ind+1}"/>
+                    <p:column headerText="id">
+                        <h:outputLabel value="#{esewaBean.transactionUUID}"/>
                     </p:column>
 
                     <p:column headerText="Product Name">
-                        <h:outputLabel value="#{tl.productId.name}"/>
+                        <h:outputLabel value="#{tl.esewaBean.name}"/>
                     </p:column>
 
                     <p:column headerText="Price">
-                        <h:outputLabel value="#{tl.price}"/>
+                        <h:outputLabel value="#{tl.esewaBean.paidAmount}"/>
                     </p:column>
                    <p:column headerText="Quantity">
                        <h:outputLabel value="#{tl.quantity}"/>
                     </p:column>
                  <p:column headerText="Order Date">
-                     <h:outputLabel value="#{tl.orderDate}"/>
+                     <h:outputLabel value="#{esewaBean.paymentDate}"/>
                     </p:column>
                 </p:dataTable>
         </ui:define>
     </ui:composition>
-</html>
+</html>-->

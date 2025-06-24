@@ -118,4 +118,8 @@ public class Orders implements Serializable {
         return "com.entities.Order[ id=" + id + " ]";
     }
 
+    public void setPaymentStatus(String completed) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
