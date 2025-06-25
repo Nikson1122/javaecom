@@ -11,6 +11,7 @@ com\milan\entities\SQLEXCEPTION.class
 com\milan\sessionBeans\placeOrderSessionBean.class
 com\milan\sessionBeans\placeOrderSessionBeanLocal.class
 com\milan\sessionBeans\ContactLocal.class
+com\milan\sessionBeans\ShedularBean.class
 com\milan\sessionBeans\PaymentSessionBean.class
 com\milan\entities\Contact.class
 com\milan\sessionBeans\LoginRegisterSessionBean.class

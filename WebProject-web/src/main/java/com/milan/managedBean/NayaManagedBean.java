@@ -169,6 +169,8 @@ public void populateData(){
 public void show(){
    this.DtoList = sessionBean.getContactDto();
 }
+
+
     
 }
 // * @author dell
