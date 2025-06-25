@@ -6,13 +6,13 @@
 package com.milan.sessionBeans;
 
 import com.milan.entities.Contact;
+import dtos.ContactDto;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 /**
  *
@@ -21,6 +21,10 @@ import javax.transaction.Transactional;
 @Stateless
 @Local
 public class ContactSessionBean {
+    
+  
+    
+    
 
     @PersistenceContext(unitName = "web_pu")
     // Replace with your PU name from persistence.xml
@@ -87,6 +91,12 @@ public class ContactSessionBean {
         String sql = "SELECT * FROM `contact` WHERE  address LIKE'" +address + "%'";
         Query query = em.createNativeQuery(sql, Contact.class);
         return query.getResultList();
+    }
+    
+    public List<ContactDto>getContactDto(){
+        return em
+               .createNamedQuery("Samparka.getContactDto", ContactDto.class)
+                .getResultList();
     }
 
 }

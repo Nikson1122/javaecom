@@ -4,25 +4,46 @@
  * and open the template in the editor.
  */
 package com.milan.entities;
+import dtos.ContactDto;
 import javax.persistence.Column;
 
 import java.io.Serializable;
 import java.sql.DriverManager;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
 /**
  *
  * @author dell
  */
-@Entity
+ @Entity
 
 @Table(name = "contact")
+ @SqlResultSetMapping(
+  name = "ContactDtoMapping",
+    classes = @ConstructorResult(
+        targetClass =ContactDto.class,
+        columns = {
+            @ColumnResult(name = "name", type = String.class),
+            @ColumnResult(name = "address", type = String.class)
+        }
+    )
+)
+@NamedNativeQuery(
+    name =  "Samparka.getContactDto",
+    query = "SELECT name, address FROM contact",
+    resultSetMapping = "ContactDtoMapping"
+)
+
 public class Contact implements Serializable{
     private static final long serialVersionUID = 1L;
     

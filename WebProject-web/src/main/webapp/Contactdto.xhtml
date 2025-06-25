@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Contact DTO List</title>
+</h:head>
+<h:body>
+
+    <h:form>
+        <!-- Button to load DTO data -->
+        <p:commandButton value="Show DTO Data" action="#{nayaManagedBean.show}" update="dtoTable" />
+
+        <br/><br/>
+
+        <!-- PrimeFaces data table -->
+        <p:dataTable id="dtoTable" value="#{nayaManagedBean.dtoList}" var="dto" rows="10" paginator="true" responsiveLayout="scroll">
+            <p:column headerText="Name">
+                #{dto.name}
+            </p:column>
+            <p:column headerText="Address">
+                #{dto.address}
+            </p:column>
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>

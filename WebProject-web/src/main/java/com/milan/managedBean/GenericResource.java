@@ -132,9 +132,7 @@ public class GenericResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/DeleteData/{id}")
     public String deleteinfo(@PathParam("id")Long id ,String data) throws JsonProcessingException{
-//        Contact c = new Contact();
-//        ObjectMapper mapper = new ObjectMapper();
-//        c = mapper.readValue(data, Contact.class);
+
         sessionBean.deleteContact(id);
  
         

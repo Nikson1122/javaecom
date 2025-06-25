@@ -7,6 +7,7 @@ package com.milan.managedBean;
 
 import com.milan.entities.Contact;
 import com.milan.sessionBeans.ContactSessionBean;
+import dtos.ContactDto;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,6 +58,18 @@ public class NayaManagedBean implements Serializable {
     public boolean isSubmitted() { return submitted; }
     public void setSubmitted(boolean submitted) { this.submitted = submitted; }
     
+    
+ private List<ContactDto> DtoList = new ArrayList<>();
+
+    public List<ContactDto> getDtoList() {
+        return DtoList;
+    }
+
+    public void setDtoList(List<ContactDto> DtoList) {
+        this.DtoList = DtoList;
+    }
+
+ 
     
   
 
@@ -151,6 +164,10 @@ public void findData(){
 
 public void populateData(){
     this.contactsList = sessionBean.fetchAllContact();
+}
+
+public void show(){
+   this.DtoList = sessionBean.getContactDto();
 }
     
 }

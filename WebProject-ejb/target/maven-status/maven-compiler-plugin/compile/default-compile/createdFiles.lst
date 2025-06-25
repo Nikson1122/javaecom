@@ -2,7 +2,9 @@ com\milan\sessionBeans\ArrayList.class
 com\milan\entities\Orders.class
 com\milan\sessionBeans\ContactSessionBean.class
 com\milan\entities\User.class
+Samparka.class
 com\milan\entities\Product.class
+dtos\ContactDto.class
 com\milan\entities\Category.class
 com\milan\sessionBeans\ProductSessionBean.class
 com\milan\entities\SQLEXCEPTION.class
