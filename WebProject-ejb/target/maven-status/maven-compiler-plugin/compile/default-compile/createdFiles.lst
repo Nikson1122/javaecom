@@ -2,6 +2,7 @@ com\milan\sessionBeans\ArrayList.class
 com\milan\entities\Orders.class
 com\milan\sessionBeans\ContactSessionBean.class
 com\milan\entities\User.class
+com\milan\entities\Customer.class
 Samparka.class
 com\milan\entities\Product.class
 dtos\ContactDto.class
@@ -13,7 +14,9 @@ com\milan\sessionBeans\placeOrderSessionBeanLocal.class
 com\milan\sessionBeans\ContactLocal.class
 com\milan\sessionBeans\ShedularBean.class
 com\milan\sessionBeans\PaymentSessionBean.class
+com\milan\sessionBeans\ExcelServiceBean.class
 com\milan\entities\Contact.class
 com\milan\sessionBeans\LoginRegisterSessionBean.class
 com\milan\sessionBeans\UserSessionBean.class
+com\milan\entities\Organization.class
 com\milan\entities\Payment.class

@@ -90,7 +90,41 @@
             <version>11.0.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        
+ <!-- ===== ADD THESE FOR SESSION BEAN ===== -->
+    <!-- Apache POI (Excel) - Use older versions for Java 7 -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.17</version> <!-- Works with Java 7 -->
+    </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>3.17</version>
+    </dependency>
+
+    <!-- Commons IO (File Handling) -->
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.6</version> <!-- Compatible with Java 7 -->
+    </dependency>
+
+    <!-- EclipseLink (JPA) -->
+    <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>eclipselink</artifactId>
+        <version>2.5.2</version> <!-- Java EE 6 compatible -->
+        <scope>provided</scope>
+    </dependency>
+
+
+        
     </dependencies>
+    
+    
     <build>
         <plugins>
             <plugin>

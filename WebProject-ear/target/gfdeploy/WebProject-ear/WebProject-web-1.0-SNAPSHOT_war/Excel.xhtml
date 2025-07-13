@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Excel Import</title>
+    <style>
+        .upload-container {
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .save-btn {
+            margin-top: 15px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="upload-container">
+         <p:growl id="growl" showDetail="true" />
+        <h:form id="uploadForm" enctype="multipart/form-data">
+            
+            <p:fileUpload
+                listener="#{excelBean.upload}"
+                mode="advanced"
+                auto="false"
+                update="msgs saveBtn @form :growl"
+                sizeLimit="10485760"
+                allowTypes="/(\.|\/)(xlsx)$/"
+                label="Choose Excel File"
+                uploadLabel="Upload"
+                cancelLabel="Cancel"
+                oncomplete="if (!args.validationFailed) { PF('saveBtn').enable(); }"
+            >
+                
+            </p:fileUpload>
+            
+            <p:messages id="msgs" showDetail="true"  closable="true" />
+            
+            <p:commandButton
+                id="saveBtn"
+                value="Save Data"
+                action="#{excelBean.saveData}"
+                update="@form"
+                icon="pi pi-save"
+                disabled="#{not excelBean.fileProcessed}"
+                styleClass="save-btn"
+                widgetVar="saveBtn"
+            />
+            
+        </h:form>
+    </div>
+</h:body>
+</html>
+
+
+<!--    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Excel Import</title>
+    </h:head>
+    <h:body>
+
+    <h:form enctype="multipart/form-data">
+
+        <p:panel header="Upload Excel File">
+            <p:fileUpload
+                fileUploadListener="#{excelBean.upload}"
+                mode="advanced"
+                auto="true"
+                update="@form"
+                sizeLimit="10485760"
+                allowTypes="/(\.|\/)(xlsx)$/"
+                label="Choose Excel File"
+                uploadLabel="Upload"/>
+        </p:panel>
+
+        <p:messages id="msgs" showDetail="true" autoUpdate="true"/>
+
+        <p:spacer height="20"/>
+
+        <p:panel header="Organizations Preview" rendered="#{excelBean.fileProcessed}">
+            <p:dataTable value="#{excelBean.organizations}" var="org" rows="5" paginator="true">
+                <p:column headerText="Name">
+                    <h:outputText value="#{org.name}" />
+                </p:column>
+                <p:column headerText="Address">
+                    <h:outputText value="#{org.address}" />
+                </p:column>
+                <p:column headerText="Contact">
+                    <h:outputText value="#{org.contactNumber}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+
+        <p:panel header="Customers Preview" rendered="#{excelBean.fileProcessed}">
+            <p:dataTable value="#{excelBean.customers}" var="cust" rows="5" paginator="true">
+                <p:column headerText="Name">
+                    <h:outputText value="#{cust.name}" />
+                </p:column>
+                <p:column headerText="Address">
+                    <h:outputText value="#{cust.address}" />
+                </p:column>
+                <p:column headerText="Contact">
+                    <h:outputText value="#{cust.contactNumber}" />
+                </p:column>
+                <p:column headerText="Organization">
+                    <h:outputText value="#{cust.organization.name}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+
+        <p:commandButton value="Save Data" action="#{excelBean.saveData}" 
+                         update="@form" icon="pi pi-save" 
+                         rendered="#{excelBean.fileProcessed}" />
+
+
+
+    </h:form>
+
+    </h:body>
+    </html>
+-->
+

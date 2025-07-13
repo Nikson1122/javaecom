@@ -12,5 +12,6 @@ com\milan\managedBean\GenericResource.class
 com\milan\managedBean\NavManagedBean.class
 com\milan\managedBean\ShedularMangedBean.class
 com\milan\managedBean\HttpSErvletRequest.class
+com\milan\managedBean\ExcelBean.class
 com\milan\managedBean\NayaManagedBean.class
 com\milan\managedBean\UserManagedBean.class

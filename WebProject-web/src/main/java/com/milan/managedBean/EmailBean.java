@@ -105,8 +105,8 @@ public class EmailBean {
             // PDF attachment part if exists
             
             if (pdf != null && pdf.getSize() > 0) {
-    MimeBodyPart pdfPart = new MimeBodyPart();
-    pdfPart.setDataHandler(new javax.activation.DataHandler(
+            MimeBodyPart pdfPart = new MimeBodyPart();
+            pdfPart.setDataHandler(new javax.activation.DataHandler(
         new javax.mail.util.ByteArrayDataSource(pdf.getInputStream(), pdf.getContentType())
     ));
     pdfPart.setFileName(pdf.getFileName());
