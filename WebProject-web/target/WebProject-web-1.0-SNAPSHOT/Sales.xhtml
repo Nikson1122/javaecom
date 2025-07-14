@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Sales Data</title>
+    <h:outputStylesheet library="primefaces" name="primefaces.css"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:growl id="growl" showDetail="true" />
+        
+        <p:panel header="Sales Records">
+            <p:dataTable id="salesTable" 
+                        value="#{salesManagedBean.salesList}" 
+                        var="sale"
+                        paginator="true"
+                        rows="10"
+                        rowsPerPageTemplate="5,10,15"
+                        style="margin-top:20px">
+                
+                <p:column headerText="ID" sortBy="#{sale.id}">
+                    <h:outputText value="#{sale.id}" />
+                </p:column>
+                
+                <p:column headerText="Amount" sortBy="#{sale.amount}">
+                    <h:outputText value="#{sale.amount}" />
+                </p:column>
+                
+                <p:column headerText="Date" sortBy="#{sale.salesDate}">
+                    <h:outputText value="#{sale.salesDate}" />
+                </p:column>
+                
+                <p:column headerText="Purchased By" sortBy="#{sale.purchasedBy}">
+                    <h:outputText value="#{sale.purchasedBy}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        
+          <!-- ✅ ADD THIS PANEL FOR BAR CHART DISPLAY -->
+        <p:panel header="Sales Bar Chart" style="margin-top:30px;">
+            <p:chart type="bar" model="#{salesManagedBean.barChartModel}" style="height:400px;"/>
+        </p:panel>
+        
+    </h:form>
+</h:body>
+</html>

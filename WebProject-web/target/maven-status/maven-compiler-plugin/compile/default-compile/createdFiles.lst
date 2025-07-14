@@ -4,6 +4,7 @@ com\milan\managedBean\JSONobject.class
 com\milan\csv\EmailValidator.class
 com\milan\managedBean\EsewaBean.class
 com\milan\managedBean\LoginRegisterManagedBean.class
+com\milan\managedBean\SalesManagedBean.class
 com\milan\managedBean\ApiBean.class
 com\milan\managedBean\EmailBean$1.class
 com\milan\managedBean\DashboardManagedBean.class
