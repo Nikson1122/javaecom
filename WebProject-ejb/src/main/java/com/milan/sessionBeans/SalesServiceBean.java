@@ -18,4 +18,12 @@ public class SalesServiceBean {
         return em.createQuery("SELECT s FROM Barchart s ORDER BY s.salesDate DESC", Barchart.class)
                 .getResultList();
     }
+    
+   public List<String> getDistinctNames() {
+        return em.createQuery("SELECT DISTINCT s.purchasedBy FROM Barchart s", String.class)
+                 .getResultList();
+    }
 }
+
+
+

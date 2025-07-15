@@ -8,6 +8,231 @@
 <h:head>
     <title>Sales Data</title>
     <h:outputStylesheet library="primefaces" name="primefaces.css"/>
+    <style type="text/css">
+        .filter-panel {
+            margin-bottom: 20px;
+        }
+        .data-table {
+            margin-top: 20px;
+        }
+        .chart-panel {
+            margin-top: 30px;
+        }
+        .filter-button {
+            margin-left: 10px;
+        }
+        .date-range-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form id="mainForm">
+        <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+        
+        <!-- Filter Panel -->
+        <p:panel header="Filters" styleClass="filter-panel">
+            <h:panelGrid columns="3" cellpadding="5">
+                <!-- Date Range Filter -->
+                <p:outputLabel value="Filter by Date Range:" />
+                <div class="date-range-container">
+                    <p:calendar id="startDate" value="#{salesManagedBean.startDate}" 
+                               pattern="yyyy-MM-dd" navigator="true" mode="popup"
+                               placeholder="Start Date">
+                        <p:ajax event="dateSelect" listener="#{salesManagedBean.filterSales}" 
+                                update="salesTable barChartPanel growl"/>
+                    </p:calendar>
+                    <span>to</span>
+                    <p:calendar id="endDate" value="#{salesManagedBean.endDate}" 
+                               pattern="yyyy-MM-dd" navigator="true" mode="popup"
+                               placeholder="End Date">
+                        <p:ajax event="dateSelect" listener="#{salesManagedBean.filterSales}" 
+                                update="salesTable barChartPanel growl"/>
+                    </p:calendar>
+                </div>
+                <p:commandButton value="Clear Dates" action="#{salesManagedBean.resetFilters}" 
+                                 update="startDate endDate salesTable barChartPanel growl" 
+                                 styleClass="ui-button-danger filter-button"/>
+                
+                <!-- Purchaser Filter -->
+                <p:outputLabel for="filterName" value="Filter by Purchaser:" />
+                <p:selectOneMenu id="filterName" value="#{salesManagedBean.filterName}"
+                                filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{salesManagedBean.getNameOptions()}" />
+                    <p:ajax listener="#{salesManagedBean.filterSales}" 
+                            update="salesTable barChartPanel growl"/>
+                </p:selectOneMenu>
+                <p:commandButton value="Clear Purchaser" action="#{salesManagedBean.resetFilters}" 
+                               update="filterName salesTable barChartPanel growl" 
+                               styleClass="ui-button-danger filter-button"/>
+                
+                <!-- Clear All Button -->
+                <h:outputText value=""/>
+                <p:commandButton value="Clear All Filters" action="#{salesManagedBean.resetFilters}" 
+                               update="startDate endDate filterName salesTable barChartPanel growl" 
+                               styleClass="ui-button-warning" style="width:100%"/>
+            </h:panelGrid>
+        </p:panel>
+        
+        <!-- Data Table Panel -->
+        <p:panel header="Sales Records">
+            <p:dataTable id="salesTable" 
+                        value="#{salesManagedBean.filteredSalesList}" 
+                        var="sale"
+                        paginator="true"
+                        rows="10"
+                        rowsPerPageTemplate="5,10,15"
+                        styleClass="data-table"
+                        emptyMessage="No records found with selected filters">
+                
+                <p:column headerText="ID" sortBy="#{sale.id}" width="10%">
+                    <h:outputText value="#{sale.id}" />
+                </p:column>
+                
+                <p:column headerText="Amount" sortBy="#{sale.amount}" width="20%">
+                    <h:outputText value="#{sale.amount}" />
+                </p:column>
+                
+                <p:column headerText="Date" sortBy="#{sale.salesDate}" width="30%">
+                    <h:outputText value="#{sale.salesDate}" />
+                </p:column>
+                
+                <p:column headerText="Purchased By" sortBy="#{sale.purchasedBy}" width="40%">
+                    <h:outputText value="#{sale.purchasedBy}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        
+        <!-- Chart Panel -->
+        <p:panel id="barChartPanel" header="Sales Bar Chart" styleClass="chart-panel">
+            <p:chart type="bar" model="#{salesManagedBean.barChartModel}" 
+                    style="height:400px;" responsive="true"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
+
+
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Sales Data</title>
+    <h:outputStylesheet library="primefaces" name="primefaces.css"/>
+    <style type="text/css">
+        .filter-panel {
+            margin-bottom: 20px;
+        }
+        .data-table {
+            margin-top: 20px;
+        }
+        .chart-panel {
+            margin-top: 30px;
+        }
+        .filter-button {
+            margin-left: 10px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form id="mainForm">
+        <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+        
+         Filter Panel 
+        <p:panel header="Filters" styleClass="filter-panel">
+            <h:panelGrid columns="3" cellpadding="5">
+                 Date Filter 
+                <p:outputLabel for="filterDate" value="Filter by Date:" />
+                <p:calendar id="filterDate" value="#{salesManagedBean.filterDate}" 
+                           pattern="yyyy-MM-dd" navigator="true" mode="popup"
+                           placeholder="Select date">
+                    <p:ajax event="dateSelect" listener="#{salesManagedBean.filterSales}" 
+                            update="salesTable barChartPanel growl"/>
+                </p:calendar>
+                <p:commandButton value="Clear Date" action="#{salesManagedBean.resetFilters}" 
+                                 update="filterDate salesTable barChartPanel growl" 
+                                 styleClass="ui-button-danger filter-button"/>
+                
+                 Purchaser Filter 
+                <p:outputLabel for="filterName" value="Filter by Purchaser:" />
+                <p:selectOneMenu id="filterName" value="#{salesManagedBean.filterName}"
+                                filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{salesManagedBean.getNameOptions()}" />
+                    <p:ajax listener="#{salesManagedBean.filterSales}" 
+                            update="salesTable barChartPanel growl"/>
+                </p:selectOneMenu>
+                <p:commandButton value="Clear Purchaser" action="#{salesManagedBean.resetFilters}" 
+                               update="filterName salesTable barChartPanel growl" 
+                               styleClass="ui-button-danger filter-button"/>
+                
+                 Clear All Button 
+                <h:outputText value=""/>
+                <p:commandButton value="Clear All Filters" action="#{salesManagedBean.resetFilters}" 
+                               update="filterDate filterName salesTable barChartPanel growl" 
+                               styleClass="ui-button-warning" style="width:100%"/>
+            </h:panelGrid>
+        </p:panel>
+        
+         Data Table Panel 
+        <p:panel header="Sales Records">
+            <p:dataTable id="salesTable" 
+                        value="#{salesManagedBean.filteredSalesList}" 
+                        var="sale"
+                        paginator="true"
+                        rows="10"
+                        rowsPerPageTemplate="5,10,15"
+                        styleClass="data-table"
+                        emptyMessage="No records found with selected filters">
+                
+                <p:column headerText="ID" sortBy="#{sale.id}" width="10%">
+                    <h:outputText value="#{sale.id}" />
+                </p:column>
+                
+                <p:column headerText="Amount" sortBy="#{sale.amount}" width="20%">
+                    <h:outputText value="#{sale.amount}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+                </p:column>
+                
+                <p:column headerText="Date" sortBy="#{sale.salesDate}" width="30%">
+                    <h:outputText value="#{sale.salesDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:outputText>
+                </p:column>
+                
+                <p:column headerText="Purchased By" sortBy="#{sale.purchasedBy}" width="40%">
+                    <h:outputText value="#{sale.purchasedBy}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        
+         Chart Panel 
+        <p:panel id="barChartPanel" header="Sales Bar Chart" styleClass="chart-panel">
+            <p:chart type="bar" model="#{salesManagedBean.barChartModel}" 
+                    style="height:400px;" responsive="true"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>-->
+
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Sales Data</title>
+    <h:outputStylesheet library="primefaces" name="primefaces.css"/>
 </h:head>
 
 <h:body>
@@ -41,11 +266,11 @@
             </p:dataTable>
         </p:panel>
         
-          <!-- ✅ ADD THIS PANEL FOR BAR CHART DISPLAY -->
+           ✅ ADD THIS PANEL FOR BAR CHART DISPLAY 
         <p:panel header="Sales Bar Chart" style="margin-top:30px;">
             <p:chart type="bar" model="#{salesManagedBean.barChartModel}" style="height:400px;"/>
         </p:panel>
         
     </h:form>
 </h:body>
-</html>
+</html>-->
